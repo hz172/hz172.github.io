@@ -1,0 +1,368 @@
+* {
+  box-sizing: border-box;
+
+  --bg-color: #283332;
+  --accent-color-teal: #9dd4c3;
+
+  --text-color: white;
+
+  --link-color: white;
+  --link-hover-color: #a79dd4;
+  --link-active-color: black;
+
+  --logo-font: "Courier Prime", "Courier New", monospace;
+  --main-font: "DM Mono", "Courier New", monospace;
+
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--link-hover-color) var(--bg-color);
+}
+
+.Flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.Flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Position-initial {
+  position: initial;
+}
+
+.Display-block {
+  display: block;
+}
+
+.App {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--main-font);
+}
+
+.Nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  height: 5vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  padding: 0px 20px 0px 20px;
+
+  background-color: var(--bg-color);
+  border-bottom: 2px solid var(--accent-color-teal);
+  font-weight: normal;
+}
+
+#hz-logo {
+  position: relative;
+  left: 0;
+  top: 0;
+  color: var(--text-color);
+  font-size: 1.7em;
+  font-family: var(--logo-font);
+}
+
+.Nav-bar-list {
+  position: absolute;
+  right: 0;
+  list-style-type: none;
+  font-size: 1.2em;
+  font-family: var(--main-font);
+}
+
+.List-item {
+  display: inline-flex;
+  padding: 0.75vw;
+  color: inherit;
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.3s;
+}
+
+a:link, .Link:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
+  background-clip: text;
+  color: transparent;
+}
+
+@media (width <= 1250px) {
+  #hz-logo {
+    display: none;
+  }
+  .Nav-bar-list {
+    font-size: 1em;
+  }
+  .List-item {
+  }
+}
+
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 5vh;
+  margin-bottom: 15vh;
+  font-family: var(--main-font);
+}
+
+@media (width <= 1250px) {
+  section {
+    margin-bottom: 5vh;
+  }
+}
+
+h1 {
+  margin-bottom: 50px;
+  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
+  background-clip: text;
+  color: transparent;
+  transition: text-decoration 0.3s;
+}
+
+h1:hover {
+  cursor: default;
+  text-decoration: underline solid white 3px;
+}
+
+#intro {
+  flex-direction: row;
+  padding-top: 15vh;
+}
+
+.Intro-img {
+  width: 40vw;
+}
+/*
+.Mask {
+  -webkit-mask-image: url(cloud-big.svg);
+  mask-image: url(cloud-big.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat; 
+  -webkit-mask-position: center center;
+  mask-position: center center;
+}
+*/
+.Intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.Big-text {
+  font-size: 50px;
+  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
+  background-clip: text;
+  color: transparent;
+}
+
+@media (width <= 1250px) {
+  #intro {
+    flex-direction: column;
+  }
+  .Intro-img {
+    width: 90vw;
+  }
+  .Intro-text {
+    margin-top: 5vh;
+  }
+}
+
+.About {
+  max-width: 40vw;
+  border-radius: 40px;
+  padding: 15px 40px;
+  background-color: var(--accent-color-teal);
+}
+
+@media (width <= 1250px) {
+  .About {
+    max-width: 75vw;
+  }
+}
+
+.Skills-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: auto auto auto;
+  grid-auto-columns: 220px;
+  grid-gap: 20px;
+}
+
+.Skills-grid-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  text-align: justify;
+  background-color: var(--accent-color-teal);
+  border-radius: 20px;
+  font-size: 1.2em;
+  transition: transform 0.3s;
+}
+
+.Skills-grid-item:hover {
+  transform: translateY(-3px);
+  cursor: default;
+}
+
+i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+/*
+frog:  \1F438
+cloud: \2601
+*/
+
+@media (width <= 1250px) {
+  .Skills-grid {
+    grid-template-rows: auto auto;
+    grid-auto-columns: 220px;
+  }
+}
+
+.Ubc-logo {
+  width: 80px;
+  height: 105px;
+  margin: 15px 30px 0px 0px;
+}
+
+.Descp-text {
+  line-height: 2em;
+  font-size: 1.1em;
+}
+
+#projects {
+  margin-bottom: 20vh;
+}
+
+.Projects-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.Project {
+  width: 20vw;
+  border-radius: 50px;
+  margin: 5vh;
+  background-color: var(--accent-color-teal);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+@media (width <= 1250px) {
+  .Projects-container {
+    flex-direction: column;
+  }
+  .Project {
+    width: 75vw;
+  }
+}
+
+.Project:hover {
+  transform: translateY(-7px);
+  cursor: default;
+}
+
+.Project-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.Project-text {
+  max-height: 50%;
+  padding: 15px 40px 20px 0px;
+}
+
+.Project-text-title {
+  padding-left: 50px;
+  color: var(--bg-color);
+}
+
+.Project-text-list {
+  list-style-type: "\2601";
+}
+
+.Project-text-list-item {
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+#contact {
+  margin-bottom: 0px;
+  padding-top: 10vh;
+  background-image: url(SvgHeart.Com-389.png);
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color:var(--bg-color);
+}
+
+.Contact-box {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  border-top: 2px solid var(--accent-color-teal);
+}
+
+/*
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/
