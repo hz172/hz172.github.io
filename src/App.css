@@ -1,47 +1,65 @@
 * {
   box-sizing: border-box;
 
-  --bg-color: #283332;
-  --accent-color-teal: #9dd4c3;
-
-  --text-color: white;
-
-  --link-color: white;
-  --link-hover-color: #a79dd4;
-  --link-active-color: black;
-
   --logo-font: "Courier Prime", "Courier New", monospace;
   --main-font: "DM Mono", "Courier New", monospace;
+}
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
+html {
+  --bg-color: #283332;
+  --text-color: white;
+  --bg-grid-color: #526969;
+  
+  --accent-color-teal: #93c7b7;
+  --accent-color-purple: #a79dd4;
+  --accent-color-blue: #b0e5eb;
+  --accent-color-med-blue: #9ac9ce;
+  /*9dd4c3*/
+
+  --cloud-bottom-img: url(cloud-bottom.png);
+  --ubc-logo-img: url(ubc-logo.png);
+
+  --gradient: linear-gradient(45deg, var(--accent-color-teal), var(--accent-color-med-blue), var(--accent-color-purple));
+  --gradient-blue-purple: linear-gradient(-45deg, var(--accent-color-med-blue), var(--accent-color-purple));
+
+  cursor: url('cursor-1.png'), auto;
 
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--link-hover-color) var(--bg-color);
+  scrollbar-color: var(--accent-color-teal) var(--bg-color);
 }
 
-.Flex-column {
-  display: flex;
-  flex-direction: column;
+.Light-mode {
+  --bg-color: #ecf7f3;
+  --text-color: #283332;
+  --bg-grid-color: #b8d4cc;
+
+  --accent-color-teal: #a1d8c6;
+  --accent-color-purple: #bab1e4;
+  --accent-color-blue: #bff1f7;
+  --accent-color-med-blue: #a1d5db;
+
+  --cloud-bottom-img: url(cloud-bottom-dark.png);
+  --ubc-logo-img: url(ubc-logo-dark.png);
+
+  cursor: url('cursor-2.png'), auto;
+  scrollbar-color: var(--accent-color-teal) var(--bg-color);
 }
 
-.Flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.Position-initial {
-  position: initial;
-}
-
-.Display-block {
-  display: block;
-}
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 .App {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--main-font);
+  font-size: 1.05em;
+  background-image: radial-gradient(circle at 1px 1px, var(--bg-grid-color) 1px, transparent 0);
+  background-size: 50px 50px;
 }
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 .Nav-bar {
   position: fixed;
@@ -54,11 +72,10 @@
 
   display: flex;
   align-items: center;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px;
 
   background-color: var(--bg-color);
   border-bottom: 2px solid var(--accent-color-teal);
-  font-weight: normal;
 }
 
 #hz-logo {
@@ -66,7 +83,7 @@
   left: 0;
   top: 0;
   color: var(--text-color);
-  font-size: 1.7em;
+  font-size: 1.5em;
   font-family: var(--logo-font);
 }
 
@@ -74,18 +91,16 @@
   position: absolute;
   right: 0;
   list-style-type: none;
-  font-size: 1.2em;
-  font-family: var(--main-font);
 }
 
 .List-item {
-  display: inline-flex;
-  padding: 0.75vw;
+  display: inline;
+  padding: 0px 0.75vw;
   color: inherit;
 }
 
 a {
-  color: var(--link-color);
+  color: var(--text-color);
   transition: color 0.3s;
 }
 
@@ -95,22 +110,105 @@ a:link, .Link:visited {
 
 a:hover {
   text-decoration: none;
-  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
+  background: var(--gradient);
   background-clip: text;
   color: transparent;
 }
 
-@media (width <= 1250px) {
+@media (width <= 500px) {
   #hz-logo {
     display: none;
   }
-  .Nav-bar-list {
-    font-size: 1em;
-  }
   .List-item {
+    padding: 1.1vw;
+    font-size: 0.95em;
   }
 }
 
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
+.Toggle-switch {
+  position: relative;
+  left: calc(99vw - 90px);
+  top: 6vh;
+  width: 90px;
+}
+
+label {
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  background-color: var(--bg-grid-color);
+  border-radius: 50px;
+  cursor: inherit;
+}
+
+input {
+  position: absolute;
+  display: none;
+}
+
+.Slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+input:checked ~ .Slider {
+  background-color: var(--accent-color-med-blue);
+}
+
+.Slider::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  box-shadow: inset 13px -2px 0px 0px var(--accent-color-blue);
+  background-color: var(--bg-grid-color);
+  transition: 0.3s;
+}
+
+input:checked ~ .Slider::before {
+  transform: translateX(43px);
+  background-color: var(--bg-color);
+  box-shadow: none;
+}
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
+h1 {
+  margin-bottom: 50px;
+  background: var(--gradient);
+  background-clip: text;
+  color: transparent;
+  transition: text-decoration 0.3s;
+  font-size: 1.7em;
+}
+
+mark {
+  font-weight: 400;
+  position: relative;
+  z-index: 0;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+mark::before {
+  background: var(--gradient-blue-purple);
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  width: 100%;
+  height: 90%;
+  z-index: -1;
+  bottom: 0%;
+  left: -5%;
+} 
 
 section {
   display: flex;
@@ -129,18 +227,7 @@ section {
   }
 }
 
-h1 {
-  margin-bottom: 50px;
-  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
-  background-clip: text;
-  color: transparent;
-  transition: text-decoration 0.3s;
-}
-
-h1:hover {
-  cursor: default;
-  text-decoration: underline solid white 3px;
-}
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 #intro {
   flex-direction: row;
@@ -150,16 +237,7 @@ h1:hover {
 .Intro-img {
   width: 40vw;
 }
-/*
-.Mask {
-  -webkit-mask-image: url(cloud-big.svg);
-  mask-image: url(cloud-big.svg);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat; 
-  -webkit-mask-position: center center;
-  mask-position: center center;
-}
-*/
+
 .Intro-text {
   display: flex;
   flex-direction: column;
@@ -169,9 +247,11 @@ h1:hover {
 
 .Big-text {
   font-size: 50px;
-  background: linear-gradient(45deg, var(--accent-color-teal), var(--link-hover-color));
+  font-weight: 500;
+  background: var(--gradient);
   background-clip: text;
   color: transparent;
+  text-align: center;
 }
 
 @media (width <= 1250px) {
@@ -183,8 +263,11 @@ h1:hover {
   }
   .Intro-text {
     margin-top: 5vh;
+    align-items: center;
   }
 }
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 .About {
   max-width: 40vw;
@@ -199,11 +282,11 @@ h1:hover {
   }
 }
 
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
 .Skills-grid {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: auto auto auto;
-  grid-auto-columns: 220px;
+  grid-template-columns: 220px 220px 220px;
   grid-gap: 20px;
 }
 
@@ -220,7 +303,6 @@ h1:hover {
 
 .Skills-grid-item:hover {
   transform: translateY(-3px);
-  cursor: default;
 }
 
 i {
@@ -233,23 +315,59 @@ frog:  \1F438
 cloud: \2601
 */
 
-@media (width <= 1250px) {
+@media (width <= 900px) {
   .Skills-grid {
-    grid-template-rows: auto auto;
-    grid-auto-columns: 220px;
+    grid-template-columns: max-content max-content max-content;
+  }
+  .Skills-grid-name {
+    display: none;
+  }
+  i {
+    margin: 0px;
+    font-size: 2.5em;
   }
 }
 
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
+.Edu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .Ubc-logo {
+  background-image: var(--ubc-logo-img);
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 80px;
   height: 105px;
   margin: 15px 30px 0px 0px;
 }
 
-.Descp-text {
-  line-height: 2em;
+.Edu-text-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.Edu-text {
+  margin: 0.5em;
   font-size: 1.1em;
 }
+
+@media (width < 500px) {
+  .Edu-text-box {
+    width: 260px;
+  }
+}
+
+@media (width < 370px) {
+  .Edu-text-box {
+    width: 200px;
+  }
+}
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 #projects {
   margin-bottom: 20vh;
@@ -263,7 +381,7 @@ cloud: \2601
 .Project {
   width: 20vw;
   border-radius: 50px;
-  margin: 5vh;
+  margin: 2vh 5vh;
   background-color: var(--accent-color-teal);
   overflow: hidden;
   transition: transform 0.3s;
@@ -280,7 +398,6 @@ cloud: \2601
 
 .Project:hover {
   transform: translateY(-7px);
-  cursor: default;
 }
 
 .Project-img {
@@ -289,17 +406,19 @@ cloud: \2601
 }
 
 .Project-text {
-  max-height: 50%;
-  padding: 15px 40px 20px 0px;
+  padding: 1.5vh 20px 20px 0px;
 }
 
 .Project-text-title {
   padding-left: 50px;
+  padding-top: 0.5em;
   color: var(--bg-color);
+  letter-spacing: 0.05em;
 }
 
 .Project-text-list {
   list-style-type: "\2601";
+  margin: 0.6em 0em;
 }
 
 .Project-text-list-item {
@@ -307,14 +426,28 @@ cloud: \2601
   padding-bottom: 5px;
 }
 
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
 #contact {
   margin-bottom: 0px;
   padding-top: 10vh;
-  background-image: url(SvgHeart.Com-389.png);
-  background-position: center bottom;
-  background-size: contain;
+  color: var(--bg-color);
+  position: relative;
+  z-index: 0;
+}
+
+#contact::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: var(--cloud-bottom-img);
+  background-position: center top;
+  background-size: cover;
   background-repeat: no-repeat;
-  color:var(--bg-color);
 }
 
 .Contact-box {
@@ -323,46 +456,19 @@ cloud: \2601
   text-align: center;
 }
 
+.Contact-item {
+  display: inline;
+  padding: 0px 20px;
+  color: inherit;
+}
+
+/*___________________________________________________________________________________________________________________________________________________________________________________________________________*/
+
 .Footer {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 5vh;
   border-top: 2px solid var(--accent-color-teal);
+  background-color: var(--bg-color);
 }
-
-/*
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/

@@ -1,19 +1,30 @@
-import logo from './logo.svg';
-import ubclogo from './ubc-logo-white-2.png';
 import resume from './resume.pdf';
-import cloudblue from './cloud-blue.svg';
-import cloudbig from './cloud.png';
-import xiao from './20240306043450.png';
-import cloudbottom from './SvgHeart.Com-389.png';
-import test from './profile-pic.png';
+import profilepic from './profile-pic.png';
 
 import bunbun from './bunbunadventure.png';
 import honeycomb from './honeycomb.png';
 import logicmodel from './logicmodel.png';
 
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  if (localStorage.getItem('Light-mode')) {
+    document.documentElement.classList.add('Light-mode');
+  }
+
+  useEffect(() => {
+    if (isLightMode) {
+      document.documentElement.classList.add('Light-mode');
+      localStorage.removeItem('Light-mode');
+    } else {
+      document.documentElement.classList.remove('Light-mode');
+      localStorage.setItem('Light-mode', true);
+    }
+  }, [isLightMode]); 
+
   return (
     <div className="App">
       <nav className="Nav-bar">
@@ -37,8 +48,22 @@ function App() {
         </u1>
       </nav>
 
+      <div className="Toggle-switch">
+          <label>
+            <input
+              type="checkbox"
+              name="check"
+              checked={isLightMode}
+              onChange={(e) => {
+                setIsLightMode(e.target.checked)
+              }}
+            />
+            <span className="Slider"></span>
+          </label>
+      </div>
+
       <section id="intro">
-          <img className="Intro-img" src={test}/>
+          <img className="Intro-img" src={profilepic}/>
           <div className="Intro-text">
             hi! I'm
             <div className="Big-text">Helen Zhang</div>
@@ -48,7 +73,7 @@ function App() {
 
       <section id="about">
         <div className="About">
-          <p>I am a software developer with a focus on front end development, and have experience in using JavaScript, React, and CSS, as well as various other languages such as Python and C.</p>
+          <p>I am a software developer with a focus on front end development, and have experience in using <mark>JavaScript</mark>, <mark>React</mark>, and <mark>CSS</mark>, as well as various other languages such as <mark>Python</mark> and <mark>C</mark>.</p>
           <p>I am a highly motivated quick learner, with strong communication skills and the ability to adapt to many situations.</p>
           <p>Outside of code, I enjoy creating digital art, design, and gaming.</p>
         </div>
@@ -58,51 +83,53 @@ function App() {
         <h1>Skills</h1>
         <div className="Skills-grid">
           <div className="Skills-grid-item">
-            <i class="devicon-javascript-plain"></i>
-            JavaScript
+            <i className="devicon-javascript-plain"></i>
+            <span className="Skills-grid-name">JavaScript</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-html5-plain"></i>
-            HTML
+            <i className="devicon-html5-plain"></i>
+            <span className="Skills-grid-name">HTML</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-css3-plain"></i>
-            CSS
+            <i className="devicon-css3-plain"></i>
+            <span className="Skills-grid-name">CSS</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-react-original"></i>
-            React
+            <i className="devicon-react-original"></i>
+            <span className="Skills-grid-name">React</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-python-plain"></i>
-            Python
+            <i className="devicon-python-plain"></i>
+            <span className="Skills-grid-name">Python</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-csharp-plain"></i>
-            C#
+            <i className="devicon-java-plain"></i>
+            <span className="Skills-grid-name">Java</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-java-plain"></i>
-            Java
+            <i className="devicon-csharp-plain"></i>
+            <span className="Skills-grid-name">C#</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-c-plain"></i>
-            C
+            <i className="devicon-c-plain"></i>
+            <span className="Skills-grid-name">C</span>
           </div>
           <div className="Skills-grid-item">
-            <i class="devicon-cplusplus-plain"></i>
-            C++
+            <i className="devicon-cplusplus-plain"></i>
+            <span className="Skills-grid-name">C++</span>
           </div>
         </div>
       </section>
 
       <section id="education">
         <h1>Education</h1>
-        <div className="Flex-row">
-          <img src={ubclogo} className="Ubc-logo"/>
-          <p className="Descp-text">University of British Columbia<br />
-          2016-2021<br />
-          BSc Cognitive Systems</p>
+        <div className="Edu-container">
+          <div className="Ubc-logo"></div>
+          <div className='Edu-text-box'>
+            <p className="Edu-text">University of British Columbia</p>
+            <p className="Edu-text">2016-2021</p>
+            <p className="Edu-text">BSc Cognitive Systems</p>
+          </div>
         </div>
       </section>
 
@@ -115,10 +142,10 @@ function App() {
               <div className="Project-text-title">Honeycomb.ai</div>
               <ul className="Project-text-list">
                 <li className="Project-text-list-item">
-                Worked as an software developer intern
+                Worked as a <mark>Software</mark> <mark>Developer</mark> <mark>Intern</mark>
                 </li>
                 <li className="Project-text-list-item">
-                Javascript, React, and CSS for web app development
+                <mark>JavaScript</mark>, <mark>React</mark>, and <mark>CSS</mark> for web app development
                 </li>
                 <li className="Project-text-list-item">
                 Worked on front end and design of interactive map on the Canadian Celiac Association British Columbia website (link no longer available)
@@ -135,7 +162,7 @@ function App() {
                 Cute pixel art style isometric adventure game
                 </li>
                 <li className="Project-text-list-item">
-                Unity, scripts in C#, all art, assets, and design done by me
+                <mark>Unity</mark>, scripts in <mark>C#</mark>, all art, assets, and design done by me
                 </li>
                 <li className="Project-text-list-item">
                 Made at a Game Jam, collaborated closely with one partner, communicating and dividing work
@@ -152,7 +179,7 @@ function App() {
                 Designed for eventual use by clinicians, based on a researched logic model
                 </li>
                 <li className="Project-text-list-item">
-                Python and Tableau (data vis software) to filter, process, and visualize patient data
+                <mark>Python</mark> and <mark>Tableau</mark> (data vis software) to filter, process, and visualize patient data
                 </li>
                 <li className="Project-text-list-item">
                 Worked with three different supervisors to meet complex and changing requirements
@@ -166,8 +193,8 @@ function App() {
       <section id="contact">
         <div className="Contact-box">
           <h1>Contact</h1>
-          <a className="List-item" href={resume} download="Helen_Zhang_Resume">resume</a>
-          <a className="List-item" href="mailto:z.helen.172@gmail.com" rel="noreferrer">email</a>
+          <a className="Contact-item" href={resume} download="Helen_Zhang_Resume">resume</a>
+          <a className="Contact-item" href="mailto:z.helen.172@gmail.com" rel="noreferrer">email</a>
         </div>
       </section>
 
@@ -180,20 +207,3 @@ function App() {
 }
 
 export default App;
-
-/*
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reloadaaaaaaaaaaaaaaaaaaaaaa.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-*/
